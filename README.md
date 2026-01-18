@@ -20,13 +20,14 @@ https://franciscodevportfolio.netlify.app/
 ## 📁 Estructura del proyecto
 index.html
 
-assets/
-├── css/
-│ └── styles.css
-├── cv/
-│ └── Francisco_Sandoval_CV.pdf
-└── img/
-
+- index.html
+- assets
+  - css
+    - styles.css
+  - cv
+    - Francisco_Sandoval_CV.pdf
+  - img
+    
 ---
 
 ## 📌 Contenido del sitio
