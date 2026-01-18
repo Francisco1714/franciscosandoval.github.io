@@ -18,7 +18,6 @@ https://franciscodevportfolio.netlify.app/
 ---
 
 ## 📁 Estructura del proyecto
-index.html
 
 - index.html
 - assets
