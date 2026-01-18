@@ -1,0 +1,110 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BASE ===== */
+body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: #0f172a; /* azul oscuro TI */
+    color: #e5e7eb;
+    line-height: 1.6;
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: #020617;
+    border-bottom: 1px solid #1e293b;
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+header p {
+    margin-top: 0.6rem;
+    font-size: 1rem;
+    color: #94a3b8;
+}
+
+/* ===== LINKS ===== */
+.links {
+    margin-top: 1.5rem;
+}
+
+.btn {
+    display: inline-block;
+    margin: 0.4rem;
+    padding: 0.55rem 1.3rem;
+    background-color: #020617;
+    color: #38bdf8; /* azul tech */
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #020617;
+    border-color: #38bdf8;
+    color: #7dd3fc;
+}
+
+/* ===== SECCIONES ===== */
+section {
+    max-width: 900px;
+    margin: 2.2rem auto;
+    background-color: #020617;
+    padding: 1.8rem;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+}
+
+/* ===== TITULOS ===== */
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #e5e7eb;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.4rem;
+}
+
+h3 {
+    margin-top: 1.2rem;
+    font-size: 1rem;
+    color: #38bdf8;
+}
+
+/* ===== TEXTO ===== */
+p {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    color: #cbd5f5;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 1.4rem;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.7rem;
+    }
+
+    section {
+        margin: 1.2rem 1rem;
+        padding: 1.4rem;
+    }
+}
