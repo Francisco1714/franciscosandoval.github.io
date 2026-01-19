@@ -1,30 +1,62 @@
-/* ==================================================
+/* =====================================================
    RESET
-================================================== */
+   ===================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ==================================================
-   BASE
-================================================== */
-body {
-    font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    background-color: #0f172a; /* azul oscuro TI */
-    color: #e5e7eb;
-    line-height: 1.6;
+/* =====================================================
+   VARIABLES DE TEMA (modo oscuro por defecto)
+   ===================================================== */
+:root {
+    --bg-main: #0f172a;
+    --bg-card: #020617;
+    --border-color: #1e293b;
+
+    --text-main: #e5e7eb;
+    --text-muted: #94a3b8;
+
+    --accent: #38bdf8;
 }
 
-/* ==================================================
+/* =====================================================
+   VARIABLES MODO CLARO
+   Se activan con <body class="light">
+   ===================================================== */
+body.light {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --border-color: #e2e8f0;
+
+    --text-main: #0f172a;
+    --text-muted: #475569;
+
+    --accent: #0284c7;
+}
+
+/* =====================================================
+   BASE
+   ===================================================== */
+body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* =====================================================
    HEADER
-================================================== */
+   ===================================================== */
 header {
-    background-color: #020617;
-    border-bottom: 1px solid #1e293b;
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
     padding: 3rem 1.5rem;
     text-align: center;
+
     animation: fadeUp 0.6s ease both;
 }
 
@@ -37,46 +69,66 @@ header h1 {
 header p {
     margin-top: 0.6rem;
     font-size: 1rem;
-    color: #94a3b8;
+    color: var(--text-muted);
 }
 
-/* ==================================================
+/* =====================================================
    LINKS / BOTONES
-================================================== */
+   ===================================================== */
 .links {
     margin-top: 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
 }
 
 .btn {
-    position: relative;
-    display: inline-block;
-    margin: 0.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     padding: 0.55rem 1.3rem;
-    background-color: #020617;
-    color: #38bdf8;
-    border: 1px solid #1e293b;
-    border-radius: 6px;
+    font-size: 0.95rem;
     font-weight: 500;
+    font-family: inherit;
+
+    background-color: var(--bg-card);
+    color: var(--accent);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
     text-decoration: none;
+    cursor: pointer;
+
+    position: relative;
     overflow: hidden;
-    transition: all 0.2s ease;
+
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease,
+        background-color 0.25s ease;
 }
 
 .btn:hover {
-    border-color: #38bdf8;
-    color: #7dd3fc;
+    border-color: var(--accent);
 }
 
+/* brillo sutil en hover */
 .btn::after {
     content: "";
     position: absolute;
     inset: 0;
+
     background: linear-gradient(
         120deg,
         transparent,
         rgba(56, 189, 248, 0.15),
         transparent
     );
+
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -85,25 +137,26 @@ header p {
     opacity: 1;
 }
 
-/* ==================================================
-   SECCIONES
-================================================== */
+/* =====================================================
+   SECCIONES / CARDS
+   ===================================================== */
 section {
     max-width: 900px;
     margin: 2.2rem auto;
     padding: 1.8rem;
-    background-color: #020617;
-    border: 1px solid #1e293b;
+
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
 
-    /* animación scroll */
+    /* animación de entrada */
     opacity: 0;
     transform: translateY(25px);
+
     transition:
         opacity 0.6s ease-out,
         transform 0.6s ease-out,
-        box-shadow 0.25s ease,
-        transform 0.25s ease;
+        box-shadow 0.25s ease;
 }
 
 section.visible {
@@ -111,61 +164,52 @@ section.visible {
     transform: translateY(0);
 }
 
+/* efecto card */
 section:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
-/* ==================================================
-   TIPOGRAFÍA
-================================================== */
+/* =====================================================
+   TÍTULOS
+   ===================================================== */
 h2 {
     font-size: 1.4rem;
     margin-bottom: 1rem;
-    color: #e5e7eb;
-    border-bottom: 1px solid #1e293b;
     padding-bottom: 0.4rem;
+
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border-color);
 }
 
 h3 {
     margin-top: 1.2rem;
     font-size: 1rem;
-    color: #38bdf8;
+    color: var(--accent);
 }
 
+/* =====================================================
+   TEXTO
+   ===================================================== */
 p {
     margin-top: 0.6rem;
     font-size: 0.95rem;
-    color: #cbd5f5;
+    color: var(--text-muted);
 }
 
-/* ==================================================
+/* =====================================================
    FOOTER
-================================================== */
+   ===================================================== */
 footer {
     text-align: center;
     padding: 1.4rem;
     font-size: 0.85rem;
-    color: #64748b;
+    color: var(--text-muted);
 }
 
-/* ==================================================
-   ANIMACIONES
-================================================== */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ==================================================
+/* =====================================================
    RESPONSIVE
-================================================== */
+   ===================================================== */
 @media (max-width: 768px) {
     header h1 {
         font-size: 1.7rem;
@@ -174,5 +218,19 @@ footer {
     section {
         margin: 1.2rem 1rem;
         padding: 1.4rem;
+    }
+}
+
+/* =====================================================
+   ANIMACIONES
+   ===================================================== */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
