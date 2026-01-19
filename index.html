@@ -23,6 +23,10 @@
     <a href="assets/cv/CV_Francisco_Sandoval.pdf" download class="btn">
         📄 Descargar CV
     </a>
+
+     <button id="theme-toggle" class="btn toggle-btn">
+        🌙 Modo oscuro
+    </button>
 </div>
 </header>
 
@@ -97,6 +101,41 @@
 <footer>
     <p>© 2026 - Francisco Sandoval</p>
 </footer>
+<script>
+    const sections = document.querySelectorAll("section");
 
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.transitionDelay = `${index * 0.15}s`;
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.2 }
+    );
+
+    sections.forEach(section => observer.observe(section));
+</script>
+<script>
+    const toggleBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    // cargar preferencia guardada
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light");
+        toggleBtn.textContent = "☀️ Modo claro";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+        body.classList.toggle("light");
+
+        const isLight = body.classList.contains("light");
+        toggleBtn.textContent = isLight ? "☀️ Modo claro" : "🌙 Modo oscuro";
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+</script>
 </body>
 </html>
