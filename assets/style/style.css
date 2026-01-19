@@ -1,11 +1,15 @@
-/* ===== RESET ===== */
+/* ==================================================
+   RESET
+================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ===== BASE ===== */
+/* ==================================================
+   BASE
+================================================== */
 body {
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
     background-color: #0f172a; /* azul oscuro TI */
@@ -13,12 +17,15 @@ body {
     line-height: 1.6;
 }
 
-/* ===== HEADER ===== */
+/* ==================================================
+   HEADER
+================================================== */
 header {
     background-color: #020617;
     border-bottom: 1px solid #1e293b;
     padding: 3rem 1.5rem;
     text-align: center;
+    animation: fadeUp 0.6s ease both;
 }
 
 header h1 {
@@ -33,41 +40,85 @@ header p {
     color: #94a3b8;
 }
 
-/* ===== LINKS ===== */
+/* ==================================================
+   LINKS / BOTONES
+================================================== */
 .links {
     margin-top: 1.5rem;
 }
 
 .btn {
+    position: relative;
     display: inline-block;
     margin: 0.4rem;
     padding: 0.55rem 1.3rem;
     background-color: #020617;
-    color: #38bdf8; /* azul tech */
+    color: #38bdf8;
     border: 1px solid #1e293b;
     border-radius: 6px;
     font-weight: 500;
     text-decoration: none;
+    overflow: hidden;
     transition: all 0.2s ease;
 }
 
 .btn:hover {
-    background-color: #020617;
     border-color: #38bdf8;
     color: #7dd3fc;
 }
 
-/* ===== SECCIONES ===== */
+.btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(56, 189, 248, 0.15),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn:hover::after {
+    opacity: 1;
+}
+
+/* ==================================================
+   SECCIONES
+================================================== */
 section {
     max-width: 900px;
     margin: 2.2rem auto;
-    background-color: #020617;
     padding: 1.8rem;
-    border-radius: 8px;
+    background-color: #020617;
     border: 1px solid #1e293b;
+    border-radius: 8px;
+
+    /* animación scroll */
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
 }
 
-/* ===== TITULOS ===== */
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ==================================================
+   TIPOGRAFÍA
+================================================== */
 h2 {
     font-size: 1.4rem;
     margin-bottom: 1rem;
@@ -82,14 +133,15 @@ h3 {
     color: #38bdf8;
 }
 
-/* ===== TEXTO ===== */
 p {
     margin-top: 0.6rem;
     font-size: 0.95rem;
     color: #cbd5f5;
 }
 
-/* ===== FOOTER ===== */
+/* ==================================================
+   FOOTER
+================================================== */
 footer {
     text-align: center;
     padding: 1.4rem;
@@ -97,7 +149,23 @@ footer {
     color: #64748b;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ==================================================
+   ANIMACIONES
+================================================== */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
 @media (max-width: 768px) {
     header h1 {
         font-size: 1.7rem;
