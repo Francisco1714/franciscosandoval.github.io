@@ -1,0 +1,27 @@
+/* =====================================================
+   RESET
+   ===================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* =====================================================
+   BASE
+   ===================================================== */
+body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* =====================================================
+   TEXTO
+   ===================================================== */
+p {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}

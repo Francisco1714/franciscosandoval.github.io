@@ -1,0 +1,28 @@
+/* =====================================================
+   VARIABLES DE TEMA (modo oscuro por defecto)
+   ===================================================== */
+:root {
+    --bg-main: #0f172a;
+    --bg-card: #020617;
+    --border-color: #1e293b;
+
+    --text-main: #e5e7eb;
+    --text-muted: #94a3b8;
+
+    --accent: #38bdf8;
+}
+
+/* =====================================================
+   VARIABLES MODO CLARO
+   Se activan con <body class="light">
+   ===================================================== */
+body.light {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --border-color: #e2e8f0;
+
+    --text-main: #0f172a;
+    --text-muted: #475569;
+
+    --accent: #0284c7;
+}
