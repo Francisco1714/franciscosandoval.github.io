@@ -25,3 +25,16 @@ p {
     font-size: 0.95rem;
     color: var(--text-muted);
 }
+/* Reset interactivos */
+a,
+button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}

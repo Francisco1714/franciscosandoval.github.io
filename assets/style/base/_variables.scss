@@ -1,28 +1,91 @@
-/* =====================================================
-   VARIABLES DE TEMA (modo oscuro por defecto)
-   ===================================================== */
-:root {
-    --bg-main: #0f172a;
-    --bg-card: #020617;
-    --border-color: #1e293b;
+// =====================================================
+// VARIABLES SCSS AVANZADAS + VARIABLES CSS
+// =====================================================
 
-    --text-main: #e5e7eb;
-    --text-muted: #94a3b8;
+// 1️⃣ MAPA DE COLORES
+$colors: (
+  dark: (
+    bg-main: #0f172a,
+    bg-card: #020617,
+    border: #1e293b,
+    text-main: #e5e7eb,
+    text-muted: #94a3b8,
 
-    --accent: #38bdf8;
+    // 🔽 MÁS SOBRIO
+    accent: #2563eb // blue-600
+  ),
+  light: (
+    bg-main: #f8fafc,
+    bg-card: #ffffff,
+    border: #e2e8f0,
+    text-main: #0f172a,
+    text-muted: #475569,
+
+    accent: #1d4ed8 // blue-700
+  )
+);
+
+// Función SCSS para obtener color según tema
+@function color($name, $theme: dark) {
+  @return map-get(map-get($colors, $theme), $name);
 }
 
-/* =====================================================
-   VARIABLES MODO CLARO
-   Se activan con <body class="light">
-   ===================================================== */
+// 2️⃣ MAPA DE SPACING
+$spacing: (
+  xs: 0.25rem,
+  sm: 0.5rem,
+  md: 1rem,
+  lg: 2rem,
+  xl: 3rem
+);
+
+@function space($size) {
+  @return map-get($spacing, $size);
+}
+
+// 3️⃣ MAPA DE FONT SIZES
+$font-sizes: (
+  sm: 0.85rem,
+  md: 0.95rem,
+  lg: 1.4rem,
+  xl: 2.1rem
+);
+
+@function font-size($size) {
+  @return map-get($font-sizes, $size);
+}
+
+// =====================================================
+// VARIABLES CSS PARA EL TOGGLE (dark/light)
+// =====================================================
+
+:root {
+  --bg-main: #{color(bg-main, dark)};
+  --bg-card: #{color(bg-card, dark)};
+  --border-color: #{color(border, dark)};
+  --text-main: #{color(text-main, dark)};
+  --text-muted: #{color(text-muted, dark)};
+  --accent: #{color(accent, dark)};
+
+  // spacing CSS
+  --space-xs: #{space(xs)};
+  --space-sm: #{space(sm)};
+  --space-md: #{space(md)};
+  --space-lg: #{space(lg)};
+  --space-xl: #{space(xl)};
+
+  // font sizes CSS
+  --font-sm: #{font-size(sm)};
+  --font-md: #{font-size(md)};
+  --font-lg: #{font-size(lg)};
+  --font-xl: #{font-size(xl)};
+}
+
 body.light {
-    --bg-main: #f8fafc;
-    --bg-card: #ffffff;
-    --border-color: #e2e8f0;
-
-    --text-main: #0f172a;
-    --text-muted: #475569;
-
-    --accent: #0284c7;
+  --bg-main: #{color(bg-main, light)};
+  --bg-card: #{color(bg-card, light)};
+  --border-color: #{color(border, light)};
+  --text-main: #{color(text-main, light)};
+  --text-muted: #{color(text-muted, light)};
+  --accent: #{color(accent, light)};
 }
