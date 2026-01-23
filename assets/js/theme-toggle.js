@@ -20,14 +20,14 @@ const body = document.body;
 
 // cargar preferencia guardada
 if (localStorage.getItem("theme") === "light") {
-        body.classList.add("light");
-        toggleBtn.textContent = "☀️ Modo claro";
-    }
+  body.classList.add("light");
+}
 
-    toggleBtn.addEventListener("click", () => {
-        body.classList.toggle("light");
+toggleBtn.addEventListener("click", () => {
+  body.classList.toggle("light");
 
-        const isLight = body.classList.contains("light");
-        toggleBtn.textContent = isLight ? "☀️ Modo claro" : "🌙 Modo oscuro";
-        localStorage.setItem("theme", isLight ? "light" : "dark");
+  localStorage.setItem(
+    "theme",
+    body.classList.contains("light") ? "light" : "dark"
+  );
 });
