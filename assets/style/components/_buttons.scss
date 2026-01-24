@@ -1,36 +1,55 @@
+/* =====================================================
+   LINKS / BOTONES
+   ===================================================== */
 .links {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: var(--space-sm);
   margin-top: var(--space-md);
 }
 
-/* Botones sociales y toggle de tema */
-.social-btn, .theme-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
+// Propiedades compartidas entre botones sociales y toggle de tema
+.social-btn,
+.theme-btn {
+  font-size: 1.3rem;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   border: 1px solid var(--border-color);
   background-color: var(--bg-card);
   color: var(--accent);
-  font-size: 1.4rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     background-color: var(--accent);
     color: var(--bg-card);
-    transform: translateY(-2px) scale(1.05);
     box-shadow: 0 8px 16px rgba(0,0,0,0.25);
   }
 
-  /* tooltip */
+  // Iconos sol/luna centrados
+  .icon-sun,
+  .icon-moon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+  }
+
+  .icon-sun { opacity: 1; }
+  .icon-moon { opacity: 0; }
+
+  body.light & {
+    .icon-sun { opacity: 0; }
+    .icon-moon { opacity: 1; }
+  }
+
+  // Tooltip
   &::after {
     content: attr(data-tooltip);
     position: absolute;
@@ -52,43 +71,23 @@
 
   &:hover::after {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0%);
   }
 }
 
-/* Toggle de tema iconos sol/luna */
-.theme-btn .icon-sun, .theme-btn .icon-moon {
-  position: absolute;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
 
-.theme-btn .icon-sun {
-  opacity: 1;
-}
-
-body.light .theme-btn .icon-sun {
-  opacity: 0;
-}
-
-body.light .theme-btn .icon-moon {
-  opacity: 1;
-}
-
+// Responsive
 @media (max-width: 768px) {
-  .links {
-    gap: var(--space-xs);
-    flex-wrap: wrap; // se acomodan en varias filas si es necesario
-  }
-
-  .social-btn::after,
-  .theme-btn::after {
-    display: none; // ocultamos tooltips
-  }
-
-  .social-btn, .theme-btn {
+  .social-btn,
+  .theme-btn {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
+  }
+
+  // Ocultar tooltips en móvil
+  .social-btn::after,
+  .theme-btn::after {
+    display: none;
   }
 }

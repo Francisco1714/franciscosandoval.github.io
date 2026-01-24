@@ -1,91 +1,239 @@
-// =====================================================
-// VARIABLES SCSS AVANZADAS + VARIABLES CSS
-// =====================================================
-
-// 1️⃣ MAPA DE COLORES
-$colors: (
-  dark: (
-    bg-main: #0f172a,
-    bg-card: #020617,
-    border: #1e293b,
-    text-main: #e5e7eb,
-    text-muted: #94a3b8,
-
-    // 🔽 MÁS SOBRIO
-    accent: #2563eb // blue-600
-  ),
-  light: (
-    bg-main: #f8fafc,
-    bg-card: #ffffff,
-    border: #e2e8f0,
-    text-main: #0f172a,
-    text-muted: #475569,
-
-    accent: #1d4ed8 // blue-700
-  )
-);
-
-// Función SCSS para obtener color según tema
-@function color($name, $theme: dark) {
-  @return map-get(map-get($colors, $theme), $name);
-}
-
-// 2️⃣ MAPA DE SPACING
-$spacing: (
-  xs: 0.25rem,
-  sm: 0.5rem,
-  md: 1rem,
-  lg: 2rem,
-  xl: 3rem
-);
-
-@function space($size) {
-  @return map-get($spacing, $size);
-}
-
-// 3️⃣ MAPA DE FONT SIZES
-$font-sizes: (
-  sm: 0.85rem,
-  md: 0.95rem,
-  lg: 1.4rem,
-  xl: 2.1rem
-);
-
-@function font-size($size) {
-  @return map-get($font-sizes, $size);
-}
-
-// =====================================================
-// VARIABLES CSS PARA EL TOGGLE (dark/light)
-// =====================================================
-
+/* =====================================================
+   VARIABLES GLOBALES
+   ===================================================== */
 :root {
-  --bg-main: #{color(bg-main, dark)};
-  --bg-card: #{color(bg-card, dark)};
-  --border-color: #{color(border, dark)};
-  --text-main: #{color(text-main, dark)};
-  --text-muted: #{color(text-muted, dark)};
-  --accent: #{color(accent, dark)};
+  --bg-main: #0d1117;
+  --bg-card: #161b22;
+  --border-color: #30363d;
+  --text-main: #c9d1d9;
+  --text-muted: #8b949e;
+  --accent: #58a6ff;
+  --accent-2: #f59e0b;
 
-  // spacing CSS
-  --space-xs: #{space(xs)};
-  --space-sm: #{space(sm)};
-  --space-md: #{space(md)};
-  --space-lg: #{space(lg)};
-  --space-xl: #{space(xl)};
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
 
-  // font sizes CSS
-  --font-sm: #{font-size(sm)};
-  --font-md: #{font-size(md)};
-  --font-lg: #{font-size(lg)};
-  --font-xl: #{font-size(xl)};
+  --font-sm: 0.85rem;
+  --font-md: 0.95rem;
+  --font-lg: 1.4rem;
+  --font-xl: 2.1rem;
 }
 
 body.light {
-  --bg-main: #{color(bg-main, light)};
-  --bg-card: #{color(bg-card, light)};
-  --border-color: #{color(border, light)};
-  --text-main: #{color(text-main, light)};
-  --text-muted: #{color(text-muted, light)};
-  --accent: #{color(accent, light)};
+  --bg-main: #f4f4f5;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  --text-main: #0f111a;
+  --text-muted: #6b7280;
+  --accent: #3b82f6;
+  --accent-2: #f59e0b;
+}
+
+/* =====================================================
+   RESET & BASE
+   ===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Fira Code", "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+p {
+  margin-top: 0.6rem;
+  font-size: var(--font-md);
+  color: var(--text-muted);
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+header {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: var(--font-xl);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+header p {
+  margin-top: 0.5rem;
+  font-size: var(--font-md);
+  color: var(--text-muted);
+}
+
+/* =====================================================
+   LINKS / BOTONES
+   ===================================================== */
+.links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  flex-wrap: wrap;
+}
+
+/* Botones genéricos */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.2rem;
+  font-size: var(--font-md);
+  font-weight: 500;
+  background-color: var(--bg-card);
+  color: var(--accent);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: var(--accent);
+    background-color: lighten(var(--bg-card), 5%);
+  }
+
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10%);
+    background: var(--bg-card);
+    color: var(--text-main);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0%);
+  }
+}
+
+/* Botones sociales */
+.social-btn {
+  @extend .button;
+  width: 48px;
+  height: 48px;
+  font-size: 1.4rem;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: var(--accent);
+    color: var(--bg-card);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+  }
+}
+
+/* Botón toggle de tema */
+.theme-btn {
+  @extend .social-btn;
+  font-size: 1.3rem;
+  transform: rotate(0deg) !important; /* mantener estático */
+
+  .icon-sun,
+  .icon-moon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+  }
+
+  .icon-sun { opacity: 1; }
+  .icon-moon { opacity: 0; }
+
+  body.light & {
+    .icon-sun { opacity: 0; }
+    .icon-moon { opacity: 1; }
+  }
+}
+
+/* =====================================================
+   SECCIONES / CARDS
+   ===================================================== */
+section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.8rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+section:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* =====================================================
+   TÍTULOS
+   ===================================================== */
+h2 {
+  font-size: var(--font-lg);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+h3 {
+  margin-top: 1rem;
+  font-size: var(--font-md);
+  color: var(--accent);
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+footer {
+  text-align: center;
+  padding: 1.4rem;
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 768px) {
+  .links {
+    gap: var(--space-xs);
+  }
+
+  .social-btn, .theme-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .button::after {
+    display: none;
+  }
 }
