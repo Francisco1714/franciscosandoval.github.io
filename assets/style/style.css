@@ -1,5 +1,8 @@
 @charset "UTF-8";
 /* Base */
+/* =====================================================
+   VARIABLES GLOBALES
+   ===================================================== */
 :root {
   --bg-main: #0d1117;
   --bg-card: #161b22;
@@ -30,7 +33,7 @@ body.light {
 }
 
 /* =====================================================
-   RESET
+   RESET & BASE
    ===================================================== */
 * {
   margin: 0;
@@ -46,65 +49,68 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+p {
+  margin-top: 0.6rem;
+  font-size: var(--font-md);
+  color: var(--text-muted);
+}
+
 /* =====================================================
-   HEADERS
+   HEADER
    ===================================================== */
 header {
   background-color: var(--bg-card);
   border-bottom: 1px solid var(--border-color);
-  padding: var(--space-lg) var(--space-md);
+  padding: 3rem 1.5rem;
   text-align: center;
-  animation: fadeUp 0.6s ease both;
 }
+
 header h1 {
   font-size: var(--font-xl);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.5px;
 }
+
 header p {
-  margin-top: var(--space-xs);
+  margin-top: 0.5rem;
   font-size: var(--font-md);
   color: var(--text-muted);
 }
-header .links {
-  margin-top: var(--space-md);
+
+/* =====================================================
+   LINKS / BOTONES
+   ===================================================== */
+.links {
   display: flex;
   justify-content: center;
   gap: var(--space-sm);
+  margin-top: var(--space-md);
   flex-wrap: wrap;
 }
 
-/* =====================================================
-   BOTONES Y ENLACES
-   ===================================================== */
-.button,
-.social-btn,
-.theme-btn {
+/* Botones genéricos */
+.button, .social-btn, .theme-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  border: 1px solid var(--border-color);
+  padding: 0.55rem 1.2rem;
+  font-size: var(--font-md);
+  font-weight: 500;
   background-color: var(--bg-card);
   color: var(--accent);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  text-decoration: none;
   cursor: pointer;
-  font-size: 1.4rem;
-  width: 48px;
-  height: 48px;
   position: relative;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  transition: all 0.25s ease;
 }
-.button:hover,
-.social-btn:hover,
-.theme-btn:hover {
-  background-color: var(--accent);
-  color: var(--bg-card);
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+.button:hover, .social-btn:hover, .theme-btn:hover {
+  border-color: var(--accent);
+  background-color: rgba(255, 255, 255, 0.04);
 }
-.button::after,
-.social-btn::after,
-.theme-btn::after {
+.button::after, .social-btn::after, .theme-btn::after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: 120%;
@@ -122,18 +128,29 @@ header .links {
   transition: all 0.3s ease;
   z-index: 10;
 }
-.button:hover::after,
-.social-btn:hover::after,
-.theme-btn:hover::after {
+.button:hover::after, .social-btn:hover::after, .theme-btn:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0%);
 }
 
-/* Botón toggle de tema */
-.theme-btn {
-  border-radius: 50%;
+/* Botones sociales */
+.social-btn, .theme-btn {
   width: 48px;
   height: 48px;
+  font-size: 1.4rem;
+  border-radius: 50%;
+}
+.social-btn:hover, .theme-btn:hover {
+  background-color: var(--accent);
+  color: var(--bg-card);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Botón toggle de tema */
+.theme-btn {
+  font-size: 1.3rem;
+  transform: rotate(0deg) !important; /* mantener estático */
 }
 .theme-btn .icon-sun,
 .theme-btn .icon-moon {
@@ -161,39 +178,32 @@ body.light .theme-btn .icon-moon {
    ===================================================== */
 section {
   max-width: 900px;
-  margin: var(--space-lg) auto;
-  padding: var(--space-lg);
+  margin: 2rem auto;
+  padding: 1.8rem;
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.25s ease;
+  transition: all 0.3s ease;
 }
+
 section:hover {
-  transform: translateY(-4px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-section h2 {
+
+/* =====================================================
+   TÍTULOS
+   ===================================================== */
+h2 {
   font-size: var(--font-lg);
-  margin-bottom: var(--space-sm);
-  padding-bottom: 0.4rem;
-  color: var(--text-main);
+  margin-bottom: 1rem;
   border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
 }
-section h3 {
-  margin-top: var(--space-sm);
+
+h3 {
+  margin-top: 1rem;
   font-size: var(--font-md);
   color: var(--accent);
-}
-section p {
-  margin-top: var(--space-xs);
-  color: var(--text-muted);
-  font-size: var(--font-md);
 }
 
 /* =====================================================
@@ -201,36 +211,19 @@ section p {
    ===================================================== */
 footer {
   text-align: center;
-  padding: var(--space-md);
+  padding: 1.4rem;
   font-size: var(--font-sm);
   color: var(--text-muted);
 }
 
 /* =====================================================
-   ANIMACIONES
-   ===================================================== */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* =====================================================
    RESPONSIVE
    ===================================================== */
 @media (max-width: 768px) {
-  header h1 {
-    font-size: 1.7rem;
+  .links {
+    gap: var(--space-xs);
   }
-  section {
-    margin: var(--space-md) var(--space-sm);
-    padding: var(--space-md);
-  }
-  .button, .social-btn, .theme-btn {
+  .social-btn, .theme-btn {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
