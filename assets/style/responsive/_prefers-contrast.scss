@@ -1,0 +1,33 @@
+/* =====================================================
+   PREFERS-CONTRAST: HIGH
+   Mejora contraste para usuarios con baja visión
+   ===================================================== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #555;
+  }
+
+  body.light {
+    --border-color: #999;
+  }
+
+  .social-btn,
+  .theme-btn {
+    border-width: 2px;
+  }
+
+  section {
+    border-width: 2px;
+  }
+
+  :focus-visible {
+    outline-width: 3px;
+    outline-offset: 4px;
+  }
+
+  .social-btn:hover,
+  .theme-btn:hover {
+    border-width: 3px;
+  }
+}
