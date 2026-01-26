@@ -512,32 +512,27 @@ address a:active {
   }
 }
 /* =====================================================
-   PREFERS-CONTRAST: HIGH
-   Mejora contraste para usuarios con baja visión
+   PREFERS-REDUCED-MOTION
+   Respeta preferencias de usuario para reducir animaciones
    ===================================================== */
-@media (prefers-contrast: high) {
-  :root {
-    --border-color: #555;
-  }
-  body.light {
-    --border-color: #999;
-  }
-  /* Bordes más gruesos para mejor visibilidad */
-  .social-btn,
-  .theme-btn {
-    border-width: 2px;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
   section {
-    border-width: 2px;
+    opacity: 1 !important;
+    transform: none !important;
   }
-  /* Outline más visible en focus */
-  :focus-visible {
-    outline-width: 3px;
-    outline-offset: 4px;
+  header {
+    animation: none !important;
   }
-  /* Aumentar contraste en hover */
   .social-btn:hover,
   .theme-btn:hover {
-    border-width: 3px;
+    transform: none !important;
   }
 }/*# sourceMappingURL=style.css.map */
