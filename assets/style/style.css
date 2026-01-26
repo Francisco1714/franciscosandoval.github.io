@@ -449,6 +449,41 @@ body.light .theme-btn .icon-moon {
     display: none;
   }
 }
+/* =====================================================
+   ADDRESS Y LINKS DE CONTACTO
+   ===================================================== */
+address {
+  font-style: normal;
+  line-height: 1.8;
+}
+address p {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: 0.8rem;
+}
+address p:first-child {
+  margin-top: 0;
+}
+address a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+address a:hover {
+  color: var(--accent-2);
+  text-decoration-color: var(--accent-2);
+}
+address a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+address a:active {
+  transform: scale(0.98);
+}
+
 /* Animations */
 /* =====================================================
    ANIMACIONES
@@ -476,34 +511,3 @@ body.light .theme-btn .icon-moon {
     padding: 1.4rem;
   }
 }/*# sourceMappingURL=style.css.map */
-
-/* =====================================================
-   ACCESIBILIDAD – FOCUS VISIBLE
-   ===================================================== */
-
-/* Reset: evitamos focus feo por defecto */
-:focus {
-  outline: none;
-}
-
-/* Focus real solo para teclado */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-
-/* Ajustes específicos */
-.button:focus-visible,
-.social-btn:focus-visible,
-.theme-btn:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-}
-
-/* Evitar animaciones molestas al hacer focus */
-.button:focus-visible,
-.social-btn:focus-visible,
-.theme-btn:focus-visible {
-  transform: none;
-}
