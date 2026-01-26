@@ -510,4 +510,34 @@ address a:active {
     margin: 1.2rem 1rem;
     padding: 1.4rem;
   }
+}
+/* =====================================================
+   PREFERS-CONTRAST: HIGH
+   Mejora contraste para usuarios con baja visión
+   ===================================================== */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #555;
+  }
+  body.light {
+    --border-color: #999;
+  }
+  /* Bordes más gruesos para mejor visibilidad */
+  .social-btn,
+  .theme-btn {
+    border-width: 2px;
+  }
+  section {
+    border-width: 2px;
+  }
+  /* Outline más visible en focus */
+  :focus-visible {
+    outline-width: 3px;
+    outline-offset: 4px;
+  }
+  /* Aumentar contraste en hover */
+  .social-btn:hover,
+  .theme-btn:hover {
+    border-width: 3px;
+  }
 }/*# sourceMappingURL=style.css.map */
