@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://francisco1714.github.io/franciscosandoval.github.io/sitemap.xml
